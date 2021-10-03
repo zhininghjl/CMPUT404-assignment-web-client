@@ -36,14 +36,15 @@ class HTTPClient(object):
     # site: https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlparse
     def get_host_port_path(self,url):
         DEFAULT_PORT = 80
+        DEFAULT_PATH = "/"
         components = urllib.parse.urlparse(url)
         host = components.hostname
         port = components.port
         path = components.path
-        if port is None:
+        if port is None:  # port is not given
             port = DEFAULT_PORT
-        if path is None:
-            path = "/"
+        if not path:  # is an empty path
+            path = DEFAULT_PATH
         return host, port, path
 
     def connect(self, host, port):
