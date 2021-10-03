@@ -33,7 +33,7 @@ class HTTPResponse(object):
         self.body = body
 
 class HTTPClient(object):
-    # site: https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlparse
+    # citation for urlparse: https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlparse
     def get_host_port_path(self,url):
         DEFAULT_PORT = 80
         DEFAULT_PATH = "/"
@@ -93,7 +93,7 @@ class HTTPClient(object):
         header = self.get_headers(response_message)
         code = self.get_code(header)
         body = self.get_body(response_message)
-
+        print(response_message)
         # close connection
         self.close()
         return HTTPResponse(code, body)
@@ -105,7 +105,7 @@ class HTTPClient(object):
 
         content = "" 
         if args:
-            # site: https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlencode
+            # citation for urlencode: https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urlencode
             content = urllib.parse.urlencode(args)
         content_length = len(content)
         content_type = "application/x-www-form-urlencoded"
@@ -118,7 +118,7 @@ class HTTPClient(object):
         header = self.get_headers(response_message)
         code = self.get_code(header)
         body = self.get_body(response_message)
-        
+        print(response_message)
         # close connection
         self.close()
         return HTTPResponse(code, body)
